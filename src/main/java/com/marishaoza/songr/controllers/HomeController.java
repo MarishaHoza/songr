@@ -1,4 +1,4 @@
-package com.marishaoza.songr;
+package com.marishaoza.songr.controllers;
 
 
 import org.springframework.stereotype.Controller;
@@ -37,7 +37,7 @@ public class HomeController {
         return "reverseQuery";
     }
 
-    protected static String reverseText(String text) {
+    public static String reverseText(String text) {
         String[] splitWords = text.split(" ");
         for ( int i = 0; i < splitWords.length / 2; i++ ) {
             String temp = splitWords[i];
