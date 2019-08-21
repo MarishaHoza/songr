@@ -63,6 +63,10 @@ public class Album {
         return this.imageUrl;
     }
 
+    public long getId() {
+        return this.id;
+    }
+
     // ----------------- Methods -----------------
 
     public String toString() {
