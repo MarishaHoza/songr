@@ -1,5 +1,6 @@
 package com.marishaoza.songr;
 
+import com.marishaoza.songr.controllers.HomeController;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
