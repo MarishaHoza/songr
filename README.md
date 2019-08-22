@@ -17,7 +17,16 @@ A basic webapp that will be useful for the next 5 CodeFellows 401 labs.
     * An Album has a title, an artist, a songCount, a length (in seconds), and an imageUrl that is a link to that album’s art.
 2. A user should be able to see information about all the albums on the site.
 3. A user should be able to add albums to the site.
-
+### Lab 13: Related Resources and Integration Testing
+#### Feature tasks:
+1. Create a `Song` model.
+    * A Song has a title, a length (in seconds), a trackNumber, and the album on which that song appears.
+Ensure that the relationship between Albums and Songs is appropriately set up.
+2. A user should be able to see information about all the songs on the site.
+3. A user should be able to view a page with data about one particular album.
+4. A user should be able to add songs to an album.
+5. A user should be able to see the songs that belong to an album when looking at that album.
+6. Add a custom error page
 
 -----------
 # Included Routes
@@ -28,7 +37,7 @@ A basic webapp that will be useful for the next 5 CodeFellows 401 labs.
   ```
   /hello?name=YourNameHere
   ```
-* ### /capitalize/
+* ### /capitalize/{your text here}
   Include text to capitalize after the trailing `/`. This field is mandatory.
   ```
   /capitalize/your text goes here
@@ -39,7 +48,13 @@ A basic webapp that will be useful for the next 5 CodeFellows 401 labs.
   /reverse?param=Text to reverse goes here
   ```
 * ### /albums
-  View a list of all albums. Add new albums with an input form. Delete an album once created with the `Delete Album` button. This route has data persistance from your PostgreSQL database.
+  View a list of all albums. Add new albums with an input form. Delete an album once created with the `Delete Album` button. This route has data persistence from your PostgreSQL database.
+  Note that deleting an album will also delete all songs associated with that album.
+  Link to an individual album page by clicking on an album.
+
+* ### /album/{album id}
+  View a detail page for the individual album. Add and delete songs from this page with the `Add New Song` form and `Delete Song` button. This route has data persistence from your PostgreSQL database. 
+
 
 ----------
 # How to Run
@@ -89,7 +104,7 @@ A basic webapp that will be useful for the next 5 CodeFellows 401 labs.
         1. Line 1: Database name `albums` should be replaced if you created a database with a different name above
         2. Line 2: Username `marishoz` should be replaced with your postgres username
         3. Line 3: If you are on a windows/linux machine, `postgrespassword` should be replaced with your postgres password, and you should remove the `#` at the start of the line which signifies commented out code. If you are on a mac, this step is not required.
-        4. Line 4: Remove the `#` at the start of the line (this signifies commented out code) __only for the first time you run the application__. After your initial run, comment this line out again, or you will not have data persistance between runs.
+        4. Line 4: Remove the `#` at the start of the line (this signifies commented out code) __only for the first time you run the application__. After your initial run, comment this line out again, or you will not have data persistence between runs.
 2. Use the gradle bootRun command to start Spring
     ```
     $ gradle bootRun
@@ -102,3 +117,5 @@ A basic webapp that will be useful for the next 5 CodeFellows 401 labs.
 
 # Resources:
 * [Override PUT to DELETE in HTML](https://dev.to/moz5691/method-override-for-put-and-delete-in-html-3fp2)
+* [Thymeleaf variable URL](https://www.thymeleaf.org/doc/articles/standardurlsyntax.html)
+* [Thymeleaf custom error page](https://www.logicbig.com/tutorials/spring-framework/spring-boot/custom-thymeleaf-error-page.html)

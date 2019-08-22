@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>All Albums</title>
+    <link rel="stylesheet" type="text/css" href="/reset.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
 </head>
 <body>
     <h3><a href="/">Home</a></h3>
@@ -22,21 +25,32 @@
 
     <h1>All Albums</h1>
     <div style="display:flex; flex-wrap:wrap;">
-        <div th:each="album : ${albums}" style="border: 1px solid black; width: 33%;">
-            <ul style="list-style: none;">
-                <li><img th:src="${album.imageUrl}" width="90%"/></li>
-                <li><h3><span th:text="${album.title}">Title</span> by: <span th:text="${album.artist}">Artist</span></h3></li>
-                <li>Song count: <span th:text="${album.songCount}">song count</span></li>
-                <li>Total length: <span th:text="${album.lengthInSeconds / 60}">length in minutes</span></li>
-                <li>
-                    <!-- Override post to delete: https://dev.to/moz5691/method-override-for-put-and-delete-in-html-3fp2 -->
-                    <form method="post" action="/albums">
-                        <input type="hidden" name="id" th:value="${album.id}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit">Delete Album</button>
-                    </form>
-                </li>
-            </ul>
+
+        <div th:each="album : ${albums}" style="border: 1px solid black; width: 30%; margin: 1.5%;">
+            <a  th:href="@{/album/{id}(id=${album.id})}">
+                <ul>
+                    <li><img th:src="${album.imageUrl}" width="90%"/></li>
+                    <li><h3><span th:text="${album.title}">Title</span> by: <span th:text="${album.artist}">Artist</span></h3></li>
+                    <li>Song count: <span th:text="${album.songCount}">song count</span></li>
+                    <li>Total length: <span th:text="${album.lengthInSeconds / 60}">length in minutes</span> minutes</li>
+                    <li>
+                        <h4>Your Songs:</h4>
+                        <ul>
+                        <li th:each="song : ${album.songs}">
+                            Track number <span th:text="${song.trackNumber}"></span>: </span><span th:text="${song.title}">song title</span>
+                        </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <!-- Override post to delete: https://dev.to/moz5691/method-override-for-put-and-delete-in-html-3fp2 -->
+                        <form method="post" action="/albums">
+                            <input type="hidden" name="id" th:value="${album.id}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit">Delete Album</button>
+                        </form>
+                    </li>
+                </ul>
+            </a>
         </div>
     </div>
 

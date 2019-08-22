@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${album.title}">Title</title>
+    <link rel="stylesheet" type="text/css" href="/reset.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+</head>
+<body>
+    <ul>
+        <li>
+            <h3><a href="/">Home</a></h3>
+        </li>
+        <li>
+            <h3><a href="/albums">All Albums</a></h3>
+        </li>
+    </ul>
+
+    <div>
+        <img th:src="${album.imageUrl}" style="margin:auto; display:block;">
+        <h1 th:text="${album.title}"></h1>
+        <h3>Your Songs:</h3>
+        <ul>
+            <li th:each="song : ${album.songs}">
+                Track <span th:text="${song.trackNumber}">#</span>: <span th:text="${song.title}">Title</span>
+                (<span th:text="${song.lengthInSeconds / 60}"></span>:<span th:text="${song.lengthInSeconds % 60}"></span>)
+                <form method="post" action="/songs" style="display:inline">
+                    <input type="hidden" name="songId" th:value="${song.id}">
+                    <input type="hidden" name="albumId" th:value="${album.id}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">Delete Song</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <form method="POST" action="/songs">
+        <fieldset>
+            <legend>Add a New Song to <span th:text="${album.title}">Album Title</span></legend>
+            <ul>
+                <li><label>Title: </label><input type="text" name="title" required/></li>
+                <li><label>Length (in seconds): </label><input type="number" name="lengthInSeconds"/></li>
+                <li><label>Track Number: </label><input type="number" name="trackNumber"/></li>
+                <li>
+                    <input type="hidden" name="albumId" th:value="${album.id}">
+                    <input type="submit"/>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+</body>
+</html>
