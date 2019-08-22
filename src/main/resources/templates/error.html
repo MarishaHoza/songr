@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/reset.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+</head>
+<body>
+
+<!--Error page example from: -->
+<!--https://www.logicbig.com/tutorials/spring-framework/spring-boot/custom-thymeleaf-error-page.html-->
+<h1>Oops! <span th:text="${error}">error type</span></h1>
+    <ul>
+        <li>Error status: <span th:text="${status}">code</span></li>
+        <li>Path: <span th:text="${path}">path</span></li>
+        <li>Message: <span th:text="${message}">error message</span></li>
+        <li>Exception: <span th:text="${exception}">exception</span></li>
+        <li>Trace: <br/>
+            <span th:text="${trace}">trace</span>
+        </li>
+    </ul>
+</body>
+</html>

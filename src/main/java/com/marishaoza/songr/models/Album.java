@@ -1,11 +1,9 @@
 package com.marishaoza.songr.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.net.URL;
+import java.util.List;
 
 
 @Entity
@@ -20,6 +18,8 @@ public class Album {
     int songCount;
     int lengthInSeconds;
     URL imageUrl;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "album")
+    List<Song> songs;
 
 
     // ----------------- Constructors -----------------
@@ -65,6 +65,10 @@ public class Album {
 
     public long getId() {
         return this.id;
+    }
+
+    public List<Song> getSongs() {
+        return this.songs;
     }
 
     // ----------------- Methods -----------------
